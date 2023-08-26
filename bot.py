@@ -60,29 +60,20 @@ async def op(_, m :Message):
             add_group(m.chat.id)
             await m.reply_text("**🦊 Hello {}!\nwrite me private for more details**".format(m.from_user.first_name), reply_markup=keyboar)
         print(m.from_user.first_name +" Is started Your Bot!")
-    
-#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ callback ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-@app.on_callback_query(filters.regex("chk"))
-async def chk(_, cb : CallbackQuery):
-    try:
-        await app.get_chat_member(cfg.CHID, cb.from_user.id)
-        if cb.message.chat.type == enums.ChatType.PRIVATE:
-            keyboard = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("🗯 Channel", url="https://t.me/ZIB_BOTS"),
-                        InlineKeyboardButton("💬 Support", url="https://t.me/DisccussAtZIB")
-                    ],[
-                        InlineKeyboardButton("➕ Add me to your Chat ➕", url="https://t.me/AutoAcceptorRoBot?startgroup")
-                    ]
-                ]
-            )
-            add_user(cb.from_user.id)
-        await cb.message.edit("**🦊 Hello {}!\nI'm an auto approve [Admin Join Requests]({}) Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @ZIB_Bots__**".format(cb.from_user.mention, "https://t.me/telegram/AutoAcceptorRoBot"), reply_markup=keyboard, disable_web_page_preview=True)
-        print(cb.from_user.first_name +" Is started Your Bot!")
-        return
-        
+#━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ info ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+@app.on_message(filters.command("users") & filters.user(cfg.SUDO))
+async def dbtool(_, m : Message):
+    xx = all_users()
+    x = all_groups()
+    tot = int(xx + x)
+    await m.reply_text(text=f"""
+🍀 Chats Stats 🍀
+🙋‍♂️ Users : `{xx}`
+👥 Groups : `{x}`
+🚧 Total users & groups : `{tot}` """)
+
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Broadcast ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 @app.on_message(filters.command("bcast") & filters.user(cfg.SUDO))
@@ -146,18 +137,6 @@ async def fcast(_, m : Message):
             failed +=1
 
     await lel.edit(f"✅Successfull to `{success}` users.\n❌ Faild to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
-
-
-@app.on_message(filters.command("users") & filters.user(cfg.SUDO))
-async def dbtool(_, m : Message):
-    xx = all_users()
-    x = all_groups()
-    tot = int(xx + x)
-    await m.reply_text(text=f"""
-🍀 Chats Stats 🍀
-🙋‍♂️ Users : `{xx}`
-👥 Groups : `{x}`
-🚧 Total users & groups : `{tot}` """)
 
 print("I'm Alive Now!")
 app.run()
