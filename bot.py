@@ -85,7 +85,6 @@ async def chk(_, cb : CallbackQuery):
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ info ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-@app.on_message(filters.command("users") & filters.user(cfg.SUDO))
 async def dbtool(_, m : Message):
     xx = all_users()
     x = all_groups()
@@ -159,6 +158,11 @@ async def fcast(_, m : Message):
             failed +=1
 
     await lel.edit(f"✅Successfull to `{success}` users.\n❌ Faild to `{failed}` users.\n👾 Found `{blocked}` Blocked users \n👻 Found `{deactivated}` Deactivated users.")
+
+
+@app.on_message(filters.command("users") & filters.user(cfg.SUDO))
+async def tool(_, m: Message):
+    await dbtool(_, m: Message)
 
 print("I'm Alive Now!")
 app.run()
