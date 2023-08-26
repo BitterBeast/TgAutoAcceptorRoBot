@@ -85,15 +85,15 @@ async def chk(_, cb : CallbackQuery):
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ info ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async def dbtoool(_, m : Message):
-    xx = all_users()
-    x = all_groups()
-    tot = int(xx + x)
-    await m.reply_text(text=f"""
-🍀 Chats Stats 🍀
-🙋‍♂️ Users : `{xx}`
-👥 Groups : `{x}`
-🚧 Total users & groups : `{tot}` """)
+# async def dbtoool(_, m : Message):
+#    xx = all_users()
+#    x = all_groups()
+#    tot = int(xx + x)
+#    await m.reply_text(text=f"""
+# 🍀 Chats Stats 🍀
+# 🙋‍♂️ Users : `{xx}`
+# 👥 Groups : `{x}`
+# 🚧 Total users & groups : `{tot}` """)
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Broadcast ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
