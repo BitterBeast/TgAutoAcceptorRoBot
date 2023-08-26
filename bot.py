@@ -85,7 +85,7 @@ async def chk(_, cb : CallbackQuery):
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ info ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-@app.on_message(filters.command("users") & filters.user(cfg.SUDO))
+@app.on_message(filters.users(cfg.SUDO) & filters.command('users'))
 async def dbtool(_, m : Message):
     xx = all_users()
     x = all_groups()
