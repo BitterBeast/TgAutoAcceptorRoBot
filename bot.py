@@ -85,7 +85,7 @@ async def chk(_, cb : CallbackQuery):
 
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ info ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-async def dbtool(_, m : Message):
+async def dbtoool(_, m : Message):
     xx = all_users()
     x = all_groups()
     tot = int(xx + x)
@@ -161,8 +161,15 @@ async def fcast(_, m : Message):
 
 
 @app.on_message(filters.command("users") & filters.user(cfg.SUDO))
-async def tool(_, m: Message):
-    await dbtool(_, m: Message)
+async def dbtool(_, m : Message):
+    xx = all_users()
+    x = all_groups()
+    tot = int(xx + x)
+    await m.reply_text(text=f"""
+🍀 Chats Stats 🍀
+🙋‍♂️ Users : `{xx}`
+👥 Groups : `{x}`
+🚧 Total users & groups : `{tot}` """)
 
 print("I'm Alive Now!")
 app.run()
