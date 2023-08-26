@@ -1,11 +1,14 @@
 FROM python:3.10
 
+RUN apt update && apt upgrade -y
+RUN apt install git -y
+COPY requirements.txt /requirements.txt
+
+RUN cd /
+RUN pip install -U pip && pip install -U -r requirements.txt
+RUN pip install -- upgrade pip
 WORKDIR /app
 
-COPY requirements.txt /app/
+COPY . .
 
-RUN pip3 install -r requirements.txt
-
-COPY . /app
-
-CMD python3 bot.py
+CMD ["python", "bot.py"]
