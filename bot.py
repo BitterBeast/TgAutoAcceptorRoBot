@@ -29,8 +29,8 @@ async def approve(_, m : Message):
     except errors.PeerIdInvalid as e:
         print("user isn't start bot(means group)")
     except Exception as err:
-        print(str(err))    
- 
+        print(str(err))
+
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Start ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 @app.on_message(filters.command("start"))
@@ -82,7 +82,7 @@ async def chk(_, cb : CallbackQuery):
             add_user(cb.from_user.id)
         await cb.message.edit("**🦊 Hello {}!\nI'm an auto approve [Admin Join Requests]({}) Bot.\nI can approve users in Groups/Channels.Add me to your chat and promote me to admin with add members permission.\n\n__Powerd By : @ZIB_Bots__**".format(cb.from_user.mention, "https://t.me/telegram/AutoAcceptorRoBot"), reply_markup=keyboard, disable_web_page_preview=True)
         print(cb.from_user.first_name +" Is started Your Bot!")
-
+        
 #━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ info ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 @app.on_message(filters.command("users") & filters.user(cfg.SUDO))
